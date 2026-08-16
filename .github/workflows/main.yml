@@ -18,7 +18,7 @@ jobs:
         id: build
         with:
           target: Win64
-          cli-args: -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+          configure-args: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
