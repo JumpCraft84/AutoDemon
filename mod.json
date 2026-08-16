@@ -1,6 +1,8 @@
 {
-  "geode": "2.0.0-beta.1",
-  "gd": "2.206",
+  "geode": "3.5.0",
+  "gd": {
+    "win": "2.2074"
+  },
   "id": "jumpcraft.demon_switcher",
   "name": "Demon Switcher",
   "version": "v1.0.0",
