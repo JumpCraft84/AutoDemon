@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Geode CLI
-        uses: geode-sdk/cli-setup@main
+      - name: Setup Geode
+        uses: geode-sdk/setup-geode@v1
 
       - name: Build Mod
         run: geode build --platform win
