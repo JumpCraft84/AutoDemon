@@ -3,7 +3,7 @@
 
 using namespace geode::prelude;
 
-static const int FIRST_DEMON_ID = 10565723; // Bloodbath
+static const int FIRST_DEMON_ID = 10565723;  // Bloodbath
 static const int SECOND_DEMON_ID = 21086082; // Target Demon
 
 class $modify(DemonSwitcherLayer, PlayLayer) {
@@ -13,12 +13,14 @@ class $modify(DemonSwitcherLayer, PlayLayer) {
         bool beatFirst = Mod::get()->getSavedValue<bool>(fmt::format("beat_{}", FIRST_DEMON_ID), false);
 
         if (beatFirst && level && level->m_levelID == FIRST_DEMON_ID) {
-            log::info("Bloodbath beaten! Redirecting...");
+            log::info("Bloodbath already beaten! Loading target level...");
 
-            auto targetLevel = GameLevelManager::sharedState()->getMainLevel(SECOND_DEMON_ID, nullptr);
-            if (targetLevel) {
-                auto scene = PlayLayer::scene(targetLevel, false, false);
-                CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));
+            auto targetLevel = GameLevelManager::sharedState()->m_mainLevels->objectForKey(std::to_string(SECOND_DEMON_ID));
+            auto levelObj = typeinfo_cast<GJGameLevel*>(targetLevel);
+
+            if (levelObj) {
+                auto scene = PlayLayer::scene(levelObj, false, false);
+                CCDirector::sharedDirector()->replaceScene(scene);
                 return false;
             }
         }
@@ -31,7 +33,7 @@ class $modify(DemonSwitcherLayer, PlayLayer) {
 
         if (m_level && m_level->m_levelID == FIRST_DEMON_ID) {
             Mod::get()->setSavedValue<bool>(fmt::format("beat_{}", FIRST_DEMON_ID), true);
-            log::info("Bloodbath completed!");
+            log::info("Bloodbath completed! Saved status.");
         }
     }
 };
