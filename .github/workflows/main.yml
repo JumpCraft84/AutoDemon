@@ -14,15 +14,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Mod
-        uses: geode-sdk/build-geode-mod@main
+        uses: geode-sdk/build-geode-mod@v3
         id: build
         with:
           target: Win64
+          combine: true
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Build Output
           path: ${{ steps.build.outputs.build-output }}
-
-          
