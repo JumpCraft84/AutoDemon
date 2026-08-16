@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.25)
 
-# Fix policy CMP0169 compatibility for legacy dependencies
+# Fix CMP0169 policy error for legacy subdependencies
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5 CACHE STRING "" FORCE)
+
+# Read GEODE_SDK from environment and inject it into CMake module paths
+if(DEFINED ENV{GEODE_SDK})
+    list(APPEND CMAKE_PREFIX_PATH "$ENV{GEODE_SDK}")
+    set(Geode_DIR "$ENV{GEODE_SDK}" CACHE PATH "" FORCE)
+endif()
 
 project(AutoDemon VERSION 1.0.0 LANGUAGES CXX)
 
