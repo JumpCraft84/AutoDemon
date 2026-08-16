@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Mod
-        uses: geode-sdk/build-geode-mod@v3
+        uses: geode-sdk/build-geode-mod@main
+        id: build
         with:
           target: Win64
 
@@ -22,4 +23,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Build Output
-          path: build/*.geode
+          path: ${{ steps.build.outputs.build-output }}
+
+          
