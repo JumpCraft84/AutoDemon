@@ -13,11 +13,9 @@ class $modify(DemonSwitcherLayer, PlayLayer) {
         bool beatFirst = Mod::get()->getSavedValue<bool>(fmt::format("beat_{}", FIRST_DEMON_ID), false);
 
         if (beatFirst && level && level->m_levelID == FIRST_DEMON_ID) {
-            log::info("Bloodbath already beaten! Loading target level...");
+            log::info("Bloodbath beat! Loading target level...");
 
-            auto targetLevel = GameLevelManager::sharedState()->m_mainLevels->objectForKey(std::to_string(SECOND_DEMON_ID));
-            auto levelObj = typeinfo_cast<GJGameLevel*>(targetLevel);
-
+            auto levelObj = GameLevelManager::sharedState()->getMainLevel(SECOND_DEMON_ID, nullptr);
             if (levelObj) {
                 auto scene = PlayLayer::scene(levelObj, false, false);
                 CCDirector::sharedDirector()->replaceScene(scene);
@@ -33,7 +31,7 @@ class $modify(DemonSwitcherLayer, PlayLayer) {
 
         if (m_level && m_level->m_levelID == FIRST_DEMON_ID) {
             Mod::get()->setSavedValue<bool>(fmt::format("beat_{}", FIRST_DEMON_ID), true);
-            log::info("Bloodbath completed! Saved status.");
+            log::info("Bloodbath completed!");
         }
     }
 };
