@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-# Resolve policy CMP0169 compatibility for legacy dependencies
+# Fix CMP0169 policy error for legacy subdependencies
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5 CACHE STRING "" FORCE)
 
 project(AutoDemon VERSION 1.0.0 LANGUAGES CXX)
