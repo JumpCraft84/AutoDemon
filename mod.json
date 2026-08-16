@@ -1,11 +1,11 @@
 {
-  "geode": "3.5.0",
-  "gd": {
-    "win": "2.2074"
-  },
-  "id": "jumpcraft.demon_switcher",
-  "name": "Demon Switcher",
-  "version": "v1.0.0",
-  "developer": "JumpCraft",
-  "description": "Automatically redirects to a different demon after beating Bloodbath."
+	"geode": "v3.0.0",
+	"gd": {
+		"win": "2.2074"
+	},
+	"id": "jumpcraft.demon_switcher",
+	"name": "Demon Switcher",
+	"version": "v1.0.0",
+	"developer": "JumpCraft",
+	"description": "Automatically redirects to a different demon after beating Bloodbath."
 }
