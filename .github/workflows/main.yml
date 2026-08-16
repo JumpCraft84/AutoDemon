@@ -18,7 +18,6 @@ jobs:
         id: build
         with:
           target: Win64
-          configure-args: "-DGEODE_SDK=$ENV:GEODE_SDK"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
