@@ -13,14 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Geode CLI
+        uses: geode-sdk/cli-setup@main
+
       - name: Build Mod
-        uses: geode-sdk/build-geode-mod@main
-        id: build
-        with:
-          target: Win64
+        run: geode build --platform win
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Build Output
-          path: ${{ steps.build.outputs.build-output }}
+          path: build/*.geode
